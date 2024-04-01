@@ -1,0 +1,113 @@
+{
+    "swagger": "2.0",
+    "info": {
+      "version": "1.0.0",
+      "title": "Restaurants API",
+      "description": "API for managing restaurants",
+      "license": {
+        "name": "MIT",
+        "url": "https://opensource.org/licenses/MIT"
+      }
+    },
+    "host": "localhost:4000",
+    "basePath": "/",
+    "tags": [
+      {
+        "name": "Restaurants",
+        "description": "API for managing restaurants"
+      }
+    ],
+    "schemes": [
+      "http"
+    ],
+    "consumes": [
+      "application/json"
+    ],
+    "produces": [
+      "application/json"
+    ],
+    "paths": {
+      "/restaurants": {
+        "get": {
+          "tags": ["Restaurants"],
+          "summary": "Get all restaurants",
+          "produces": ["application/json"],
+          "responses": {
+            "200": {
+              "description": "Success",
+              "schema": {
+                "type": "array",
+                "items": {
+                  "$ref": "#/definitions/Restaurant"
+                }
+              }
+            }
+          }
+        }
+      },
+      "/restaurant": {
+        "post": {
+          "tags": ["Restaurants"],
+          "summary": "Create a new restaurant",
+          "parameters": [
+            {
+              "name": "restaurant",
+              "in": "body",
+              "description": "Restaurant object",
+              "required": true,
+              "schema": {
+                "$ref": "#/definitions/Restaurant"
+              }
+            }
+          ],
+          "responses": {
+            "201": {
+              "description": "Restaurant created successfully"
+            }
+          }
+        }
+      },
+      "/restaurants/{id}": {
+        "delete": {
+          "tags": ["Restaurants"],
+          "summary": "Delete a restaurant by ID",
+          "parameters": [
+            {
+              "name": "id",
+              "in": "path",
+              "description": "ID of the restaurant to delete",
+              "required": true,
+              "type": "integer"
+            }
+          ],
+          "responses": {
+            "200": {
+              "description": "Restaurant deleted successfully"
+            },
+            "404": {
+              "description": "Restaurant not found"
+            }
+          }
+        }
+      }
+    },
+    "definitions": {
+      "Restaurant": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "integer"
+          },
+          "name": {
+            "type": "string"
+          }
+        },
+        "required": ["id", "name"]
+      }
+    }
+  }
+  
+
+
+
+
